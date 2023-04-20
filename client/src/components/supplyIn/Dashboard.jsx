@@ -17,7 +17,7 @@ class Dashboard extends Component {
             headers : {'Content-type':'application/json'},   
         }
 
-        fetch('http://localhost:3001/api/mpgraficas', fetchOptcions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/mpgraficas`, fetchOptcions)
             .then(response => response.json())
             .then(data => {
                 console.log(data)

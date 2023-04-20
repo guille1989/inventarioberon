@@ -73,7 +73,7 @@ class SeguimientoInsumos extends Component {
             method: 'GET',
             headers : {'Content-type':'application/json'},    
           }      
-          fetch('http://localhost:3001/api/newmp', requestOptions)
+          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp`, requestOptions)
               .then(response => response.json())
               .then(mp => {
                     console.log(mp.mps)
@@ -408,7 +408,7 @@ class SeguimientoInsumos extends Component {
                 fechaVencimiento : this.state.fechaVencimiento,           
                 responsableRecepcion : this.state.responsableRecepcion})    
         }      
-        fetch('http://localhost:3001/api/newmp', requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp`, requestOptions)
             .then(response => response.json())
             .then(mp => {                  
 
@@ -416,7 +416,7 @@ class SeguimientoInsumos extends Component {
                     method: 'GET',
                     headers : {'Content-type':'application/json'},    
                 }      
-                fetch('http://localhost:3001/api/newmp', requestOptionsRefresh)
+                fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp`, requestOptionsRefresh)
                     .then(response => response.json())
                     .then(mp => {
                             
@@ -455,7 +455,7 @@ class SeguimientoInsumos extends Component {
             method: 'DELETE',
             headers : {'Content-type':'application/json'},
         }      
-        fetch('http://localhost:3001/api/newmp/' + this.state.mp_id_actualizacion, requestOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp` + this.state.mp_id_actualizacion, requestOptions)
             .then(response => response.json())
             .then(mp => {                  
 
@@ -463,7 +463,7 @@ class SeguimientoInsumos extends Component {
                     method: 'GET',
                     headers : {'Content-type':'application/json'},    
                 }      
-                fetch('http://localhost:3001/api/newmp', requestOptionsRefresh)
+                fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp`, requestOptionsRefresh)
                     .then(response => response.json())
                     .then(mp => {
                             
@@ -501,7 +501,7 @@ class SeguimientoInsumos extends Component {
                         fechaVencimientoExtencion : this.state.fechaVencimientoExtencion
                     })    
                 }      
-                fetch('http://localhost:3001/api/newmp/' + this.state.mp_id_actualizacion, requestOptions)
+                fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp` + this.state.mp_id_actualizacion, requestOptions)
                     .then(response => response.json())
                     .then(mp => {                  
         
@@ -509,7 +509,7 @@ class SeguimientoInsumos extends Component {
                             method: 'GET',
                             headers : {'Content-type':'application/json'},    
                         }      
-                        fetch('http://localhost:3001/api/newmp', requestOptionsRefresh)
+                        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp`, requestOptionsRefresh)
                             .then(response => response.json())
                             .then(mp => {
                                     
@@ -551,7 +551,7 @@ class SeguimientoInsumos extends Component {
                     responsableRecepcion : this.state.responsableRecepcion,
                     tieneExtencionFechaVencimiento : this.state.regextencionfechavencimiento})    
             }      
-            fetch('http://localhost:3001/api/newmp/' + this.state.mp_id_actualizacion, requestOptions)
+            fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp` + this.state.mp_id_actualizacion, requestOptions)
                 .then(response => response.json())
                 .then(mp => {                  
     
@@ -559,7 +559,7 @@ class SeguimientoInsumos extends Component {
                         method: 'GET',
                         headers : {'Content-type':'application/json'},    
                     }      
-                    fetch('http://localhost:3001/api/newmp', requestOptionsRefresh)
+                    fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/newmp`, requestOptionsRefresh)
                         .then(response => response.json())
                         .then(mp => {
                                 
@@ -826,7 +826,7 @@ class SeguimientoInsumos extends Component {
                 method: 'GET',
                 headers : {'Content-type':'application/json'},    
               }      
-              fetch('http://localhost:3001/api/mpvalidate/' + e.target.value, requestOptions)
+              fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/mpvalidate/` + e.target.value, requestOptions)
                   .then(response => response.json())
                   .then(mp => {                    
                         if(mp.mps.length === 0){

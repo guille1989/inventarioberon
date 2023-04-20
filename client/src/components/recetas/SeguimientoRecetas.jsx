@@ -45,7 +45,7 @@ class SeguimientoRecetas extends Component {
             headers : {'Content-type':'application/json'},    
         }
 
-        fetch('http://localhost:3001/api/leermp', fetchOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leermp`, fetchOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.mps.resultRecetas)
@@ -246,7 +246,7 @@ class SeguimientoRecetas extends Component {
                 materiaPrimaReceta:     this.state.materiaPrimaReceta       
             })
         }
-        fetch('http://localhost:3001/api/leermp', fetchOptions)
+        fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/leermp`, fetchOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
