@@ -27,7 +27,7 @@ class LoginPage extends Component {
             headers : {'Content-type':'application/json'},
             body: JSON.stringify({user: this.state.user, password: this.state.password})    
           }      
-          fetch(`http:${process.env.REACT_APP_URL_PRODUCCION}/api/auth`, requestOptions)
+          fetch(`http://${process.env.REACT_APP_URL_PRODUCCION}/api/auth`, requestOptions)
               .then(response => response.json())
               .then(data => {
                     console.log(data)
