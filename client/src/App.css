@@ -1,0 +1,571 @@
+@import '../node_modules/@syncfusion/ej2-react-notifications/styles/material.css';
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-react-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+
+@font-face {
+  font-family: 'Toast_icons';
+  src: url(data:application/x-font-ttf;charset=utf-8;base64,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) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#toast_types button {
+  margin: 5px;
+  min-width: 160px;
+  max-width: 160px;
+}
+
+#toast_types {
+  text-align: center;
+}
+
+.toast-icons {
+  font-family: 'Toast_icons' !important;
+  speak: none;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#toast_type .e-toast-icon.e-icons {
+  height: auto;
+  font-size: 30px;
+}
+
+.bootstrap5 #toast_type .e-toast-icon.e-icons,
+.bootstrap5-dark #toast_type .e-toast-icon.e-icons {
+  height: 25px;
+}
+
+.toast-icons.e-success::before {
+  content: "\e701";
+}
+
+.toast-icons.e-error::before {
+  content: "\e700";
+}
+
+.toast-icons.e-info::before {
+  content: "\e704";
+}
+
+.toast-icons.e-warning::before {
+  content: "\e703";
+}
+
+.e-responsive-dialog {
+  box-shadow: none;
+  border-radius: 1px;
+}
+
+.e-input-group-icon.e-icons.e-sicon.e-clear-icon.e-clear-icon-hide {
+  display: none;
+}
+
+/* Render the mobile pager by default */
+@media (max-width: 3840px) {
+  .e-adaptive-demo .e-pager {
+      padding: 13px 0;
+  }
+  .e-adaptive-demo .e-pager div.e-parentmsgbar {
+      box-sizing: border-box;
+      display: inline-block;
+      float: initial;
+      padding-bottom: 0;
+      padding-right: 0;
+      padding-top: 0;
+      text-align: center;
+      vertical-align: top;
+      width: calc(60% - 48px);
+  }
+  .e-adaptive-demo .e-rtl.e-pager div.e-parentmsgbar {
+      margin-top: 0;
+  }
+  .e-adaptive-demo .e-pager .e-pagesizes {
+      display: none;
+  }
+  .e-adaptive-demo .e-pager .e-pagecountmsg {
+      display: none;
+  }
+  .e-adaptive-demo .e-pager .e-pagercontainer {
+      display: none;
+  }
+  .e-adaptive-demo .e-pager .e-icons {
+      font-size: 11px;
+  }
+  .e-adaptive-demo .e-pager .e-mfirst,
+  .e-adaptive-demo .e-pager .e-mprev,
+  .e-adaptive-demo .e-pager .e-mnext,
+  .e-adaptive-demo .e-pager .e-mlast {
+      border: 0;
+      box-sizing: border-box;
+      display: inline-block;
+      padding: 1% 5%;
+  }
+  .e-adaptive-demo .e-pager .e-mfirst {
+      margin-right: 0px;
+      text-align: right;
+      width: calc(10% + 11px);
+  }
+  .e-adaptive-demo .e-pager .e-mprev {
+      margin: 0 4px;
+      text-align: right;
+      width: 10%;
+  }
+  .e-adaptive-demo .e-pager .e-mnext {
+      margin: 0 4px;
+      text-align: left;
+      width: 10%;
+  }
+  .e-adaptive-demo .e-rtl.e-pager .e-mnext {
+      margin: 0;
+  }
+  .e-adaptive-demo .e-pager .e-mlast {
+      margin-left: 4px;
+      text-align: left;
+      width: calc(10% + 11px);
+  }
+  .e-adaptive-demo .e-bigger .e-pager,
+  .e-adaptive-demo .e-pager.e-bigger {
+      padding: 19px 0;
+  }
+  .e-adaptive-demo .e-bigger .e-pager.e-rtl div.e-parentmsgbar,
+  .e-adaptive-demo .e-pager.e-bigger.e-rtl div.e-parentmsgbar {
+      margin-right: 0;
+  }
+  .e-adaptive-demo .e-bigger .e-pager div.e-parentmsgbar,
+  .e-adaptive-demo .e-pager.e-bigger div.e-parentmsgbar {
+      padding: 0;
+  }
+  .e-adaptive-demo .e-pager .e-pager-default:hover {
+    background: transparent;
+  }
+}
+
+
+
+
+
+
+.bootstrap5 .e-checkboxfiltertext .statustemp .statustxt.e-activecolor,
+.bootstrap5 .e-checkboxfiltertext .statustemp .statustxt.e-transinactivecolor,
+.bootstrap5 .e-checkboxfiltertext .statustemp .statustxt.e-inactivecolor {
+  position: relative;
+  top: 1.5px;
+}
+
+.e-bigger.bootstrap5 .e-checkboxfiltertext .statustemp .statustxt.e-activecolor,
+.e-bigger.bootstrap5 .e-checkboxfiltertext .statustemp .statustxt.e-transinactivecolor,
+.e-bigger.bootstrap5 .e-checkboxfiltertext .statustemp .statustxt.e-inactivecolor {
+  top: -0.5px;
+}
+
+.bootstrap5 .e-checkboxfiltertext #Trusttext {
+  margin-left: -4px;
+}
+
+.statustemp.e-inactivecolor {
+    background-color: #ffd7cc;
+    width: 100px;
+}
+
+.statustemp.e-activecolor {
+    background-color: #ccffcc;
+    width: 100px;
+}
+
+.statustemp.e-transinactivecolor {
+  background-color: #fffccc;
+  width: 120px;
+}
+
+.statustxt.e-activecolor {
+    color: #00cc00;
+}
+
+.statustxt.e-transinactivecolor {
+    color: #ffc400;
+}
+
+.statustxt.e-inactivecolor {
+  color: #e60000;
+}
+
+.statustemp {
+    position: relative;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center
+}
+
+td.e-rowcell .statustxt.e-activecolor {
+  color: #00cc00;
+  position: relative;
+  top: 3px;
+}
+
+td.e-rowcell .statustxt.e-inactivecolor {
+  color: #e60000;
+  position: relative;
+  top: 3px;
+}
+
+td.e-rowcell .statustxt.e-transinactivecolor {
+  color: #ffc400;
+  position: relative;
+  top: 3px;
+}
+
+.bootstrap5 td.e-rowcell .statustxt.e-inactivecolor,
+.bootstrap5 td.e-rowcell .statustxt.e-transinactivecolor,
+.bootstrap5 td.e-rowcell .statustxt.e-activecolor {
+top: 9px;
+}
+
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 45%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.columnAux{
+  flex: 10%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+
+.pdfImprimir{
+  width: 595;
+  height: 842;  
+}
+
+.rotuloHeader{
+  display: flex;
+}
+
+.pdfImg{
+  border: solid;
+  border-width: 1px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+
+  flex: 10%;
+  height: 90px;
+}
+
+.rotuloBestInustrial{
+  border: solid;
+  border-width: 1px;
+  height: 70%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+}
+
+.rotuloRotulacionMP{
+  border: solid;
+  border-width: 1px;
+  height: 30%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+}
+
+.rotulosSegundosPdf{
+  flex: 80%;
+  height: 90px;
+}
+
+.rotuloTerceroPdf{
+  flex: 20%;
+  height: 90px;
+}
+
+.rotuloNumero{
+  border: solid;
+  border-width: 1px;
+  height: 35%;
+
+  font-size: x-large;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotuloRevision{
+  border: solid;
+  border-width: 1px;
+  height: 35%;
+
+  font-size: x-large;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotuloFecha{
+  border: solid;
+  border-width: 1px;
+  height: 30%;
+
+  font-size: x-large;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MP{
+
+  display: flex;  
+  justify-content: left;
+  align-items: left;
+
+  margin-top: 5px;
+
+  padding-left: 5PX;
+}
+
+.MPdisplay{
+  border: solid;
+  border-width: 1px;
+
+  font-size: 55px;
+  font-weight: bold;
+  height: 65px;
+}
+
+.fEntradafVencimiento{
+  display: flex;
+
+  margin-top: 5px;
+}
+
+.fechaEntradaR{
+
+  flex: 45%;
+  height: 65px;
+
+  padding-right: 3px;
+
+}
+
+.fechaEntradaRinput{
+  border: solid;
+  border-width: 1px;
+
+  font-size: 55px;
+  font-weight: bold;
+
+  height: 100%;
+}
+
+.fechaVencimientoR{
+
+  flex: 45%;
+  height: 65px;
+
+  padding-left: 3px;
+
+}
+
+.fechaVencimientoRinput{
+  border: solid;
+  border-width: 1px;
+
+  font-size: 55px;
+  font-weight: bold;
+
+  height: 100%;
+}
+
+.pBultoNestibasQM{
+
+  display: flex;
+
+  margin-top: 20px;
+
+}
+
+.pBulto{
+  flex: 33%;
+  height: 65px;
+  
+
+}
+
+.Bestibas{
+  flex: 33%;
+  height: 65px;
+
+}
+
+.QM{
+  flex: 34%;
+  height: 65px;
+
+  padding-left: 6px;
+}
+
+.pBultoInput{
+  
+  border: solid;
+  border-width: 1px;
+
+  font-size: 55px;
+  font-weight: bold;
+
+  height: 100%;
+
+}
+
+.BestibasInput{
+  border: solid;
+  border-width: 1px;
+
+  font-size: 55px;
+  font-weight: bold;
+
+  height: 100%;
+}
+
+.QMInput{
+  border: solid;
+  border-width: 1px;
+
+  height: 100%;
+}
+
+.extencioMateriaPrima{
+
+  display: flex;
+
+  margin-top: 5px;
+
+}
+
+.extencioMateriaPrimaTitulo{
+  display: flex;
+
+  margin-top: 20px;
+}
+
+.ex1{
+  flex: 33%;
+  height: 65px;
+
+}
+.ex2{
+  flex: 33%;
+  height: 65px;
+
+}
+.ex3{
+  flex: 34%;
+  height: 65px;
+
+}
+
+.ex1input{
+  border: solid;
+  border-width: 1px;
+
+  height: 100%;
+
+  font-size: 45px;
+  font-weight: bold;
+
+}
+.ex2input{
+  border: solid;
+  border-width: 1px;
+
+  height: 100%;
+
+  font-size: 45px;
+  font-weight: bold;
+
+}
+.ex3input{
+  border: solid;
+  border-width: 1px;
+
+  height: 100%;
+
+  font-size: 45px;
+  font-weight: bold;
+
+}
+
+.pdfContenedor{
+  padding: 5px;
+}
+
+.materiaPrimaRecetas{
+  display: flex;
+  margin-top: 20px;
+}
+
+.materiaPrima{
+  padding-right: 5px;
+}
+.pesoEspecifico{
+  padding-right: 5px;
+  width: 30%;
+}
+.orden{
+  flex: 15%;
+  padding-right: 5px;
+}
+.pesoMinimo{
+  padding-right: 5px;
+  width: 30%;
+}
+.pesoMaximo{
+  padding-right: 5px;
+  width: 30%;
+}
+
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-inputs/styles/material.css";
+
+.detailtable td{
+  font-size: 13px;
+  padding: 4px;                      
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+.recetasMPitems{
+  display: flex;
+  width: 100%;
+}
